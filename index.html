@@ -1621,6 +1621,130 @@
     </div>
 
     <script>
+         // Enhanced Typewriter animation with backspace effect
+    document.addEventListener('DOMContentLoaded', function() {
+        const heroTitle = document.querySelector('.hero-content h1');
+        const heroSubtitle = document.querySelector('.hero-content p');
+        const originalTitle = heroTitle.textContent;
+        const originalSubtitle = heroSubtitle.textContent;
+       
+        // Clear the initial content
+        heroTitle.textContent = '';
+        heroSubtitle.textContent = '';
+       
+        // Add blink animation to style
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes blink {
+                0%, 100% { opacity: 1; }
+                50% { opacity: 0; }
+            }
+            .typing-cursor {
+                display: inline-block;
+                margin-left: 2px;
+                font-weight: 400;
+                color: var(--accent);
+                animation: blink 0.7s infinite;
+            }
+            .bold-text {
+                font-weight: 700;
+            }
+        `;
+        document.head.appendChild(style);
+       
+        // Function to create blinking cursor
+        function createCursor() {
+            const cursor = document.createElement('span');
+            cursor.className = 'typing-cursor';
+            cursor.innerHTML = '|';
+            return cursor;
+        }
+       
+        // Function to type text with cursor
+        function typeText(element, text, speed, onComplete) {
+            let i = 0;
+            const cursor = createCursor();
+            element.appendChild(cursor);
+           
+            function type() {
+                if (i < text.length) {
+                    // Move cursor before adding text
+                    cursor.remove();
+                    element.innerHTML += text.charAt(i);
+                    element.appendChild(cursor);
+                    i++;
+                    setTimeout(type, speed);
+                } else if (onComplete) {
+                    cursor.remove();
+                    onComplete();
+                }
+            }
+           
+            type();
+        }
+       
+        // Function to backspace text with cursor
+        function backspaceText(element, speed, onComplete) {
+            let text = element.textContent;
+            let i = text.length;
+            const cursor = createCursor();
+           
+            function backspace() {
+                if (i > 0) {
+                    // Move cursor before removing text
+                    element.textContent = text.substring(0, i - 1);
+                    element.appendChild(cursor);
+                    i--;
+                    setTimeout(backspace, speed / 1.5); // Faster backspacing
+                } else if (onComplete) {
+                    cursor.remove();
+                    onComplete();
+                }
+            }
+           
+            // Start with cursor at the end
+            element.appendChild(cursor);
+            setTimeout(backspace, 300);
+        }
+       
+        // Start the animation sequence
+        setTimeout(function() {
+            // Type the name first
+            typeText(heroTitle, originalTitle, 80, function() {
+                // Keep name displayed, start subtitle animation
+                setTimeout(function() {
+                    const subtitleParts = originalSubtitle.split(' | ');
+                    let currentIndex = 0;
+                   
+                    function animateSubtitles() {
+                        if (currentIndex < subtitleParts.length) {
+                            // Type the current part
+                            typeText(heroSubtitle, subtitleParts[currentIndex], 60, function() {
+                                // Hold text for a moment
+                                setTimeout(function() {
+                                    // Backspace the current part
+                                    backspaceText(heroSubtitle, 40, function() {
+                                        currentIndex++;
+                                        // Continue to next part or restart
+                                        if (currentIndex < subtitleParts.length) {
+                                            setTimeout(animateSubtitles, 300);
+                                        } else {
+                                            // Restart the subtitle animation
+                                            currentIndex = 0;
+                                            setTimeout(animateSubtitles, 500);
+                                        }
+                                    });
+                                }, 1500); // Time to hold the text
+                            });
+                        }
+                    }
+                   
+                    // Start the continuous subtitle animation
+                    animateSubtitles();
+                }, 1000);
+            });
+        }, 500);
+    });
         // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const nav = document.getElementById('nav');
