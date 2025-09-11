@@ -1146,7 +1146,7 @@
         <div class="container">
             <div class="hero-content">
                 <h1>MUAZ UR REHMAN</h1>
-                <p>Computer Science Student | Full-Stack Developer | Certified in Web Technologies</p>
+                <p>Studied at Computer Science | Full-Stack Developer | Certified in Web Technologies</p>
                 <div class="hero-btns">
                     <a href="#certificates" class="btn">View Certificates</a>
                     <a href="#contact" class="btn btn-outline">Contact Me</a>
@@ -1182,14 +1182,14 @@
                             <i class="fas fa-envelope"></i>
                             <div>
                                 <h4>Email:</h4>
-                                <p><a href="mailto:muazurrehman500@gmail.com">muazurrehman500@gmail.com</a></p>
+                                <p><a href="mailto:info.muazurrehman@gmail.com">info.muazurrehman@gmail.com</a></p>
                             </div>
                         </div>
                         <div class="about-info-item">
                             <i class="fas fa-graduation-cap"></i>
                             <div>
                                 <h4>Education:</h4>
-                                <p>BSc Computer Science - UVAS</p>
+                                <p>BS Computer Science - UVAS</p>
                             </div>
                         </div>
                         <div class="about-info-item">
@@ -1370,6 +1370,26 @@
                         </div>
                     </div>
                 </div>
+                <!-- hp certificate -->
+                <div class="certificate-card">
+                    <div class="certificate-img">
+                        <img src="Hp.jpg" alt="Backend Development">
+                    </div>
+                    <div class="certificate-content">
+                        <h3>Effective Business Websites</h3>
+                        <div class="certificate-issuer">
+                            <img src="hp logo.png" alt="Board Infinity">
+                            <span>hp</span>
+                        </div>
+                        <span class="certificate-date">Issued: April 2023</span>
+                        <div class="certificate-verify">
+                    <a href="https://www.life-global.org/certificate/4e5e0899-cf57-4a4d-9cc4-62aaafac7324" class="verify-btn" target="_blank">
+                                <i class="fas fa-shield-alt"></i> Verify
+                            </a>
+                            <span class="certificate-id">ID: 4e5e0899</span>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Certificate 6 - Full Stack -->
                 <div class="certificate-card">
@@ -1520,14 +1540,14 @@
                         <i class="fas fa-envelope"></i>
                         <div>
                             <h4>Email</h4>
-                            <p><a href="mailto:muazurrehman500@gmail.com">muazurrehman500@gmail.com</a></p>
+                            <p><a href="mailto:info.muazurrehman@gmail.com">info.muazurrehman@gmail.com</a></p>
                         </div>
                     </div>
                     <div class="contact-info-item">
                         <i class="fas fa-phone-alt"></i>
                         <div>
-                            <h4>Phone</h4>
-                            <p><a href="tel:+923334549205">+92 333 4549205</a></p>
+                            <h4>Phone(whatsapp)</h4>
+                            <p><a href="tel:+923396800322">+92 339 6800322</a></p>
                         </div>
                     </div>
                     <div class="contact-info-item">
@@ -1673,7 +1693,7 @@
                     element.innerHTML += text.charAt(i);
                     element.appendChild(cursor);
                     i++;
-                    setTimeout(type, speed);
+                    setTimeout(type, speed/4); //for increasing speed to show text
                 } else if (onComplete) {
                     cursor.remove();
                     onComplete();
@@ -1695,7 +1715,7 @@
                     element.textContent = text.substring(0, i - 1);
                     element.appendChild(cursor);
                     i--;
-                    setTimeout(backspace, speed / 1.5); // Faster backspacing
+                    setTimeout(backspace, speed / 3); // Faster backspacing
                 } else if (onComplete) {
                     cursor.remove();
                     onComplete();
