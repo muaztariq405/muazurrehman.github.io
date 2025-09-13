@@ -749,73 +749,155 @@
         }
 
         /* ===== Contact Section ===== */
-        .contact {
-            background-color: var(--white);
-        }
+.contact {
+    background-color: var(--light);
+}
 
-        .contact-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
+.contact-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
 
-        .contact-info {
-            background: var(--light);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-            border-left: 4px solid var(--accent);
-        }
+.contact-info {
+    background: var(--white);
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border-left: 4px solid var(--accent);
+}
 
-        .contact-info h3 {
-            font-size: 1.5rem;
-            color: var(--dark);
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
+.contact-info h3 {
+    font-size: 1.5rem;
+    color: var(--dark);
+    margin-bottom: 30px;
+    position: relative;
+    padding-bottom: 15px;
+    text-align: center;
+}
 
-        .contact-info h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 4px;
-            background: var(--accent);
-            border-radius: 2px;
-        }
+.contact-info h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 2px;
+}
 
-        .contact-info-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 20px;
-        }
+.contact-info-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
 
-        .contact-info-item i {
-            color: var(--primary);
-            font-size: 1.2rem;
-            margin-right: 15px;
-            margin-top: 5px;
-        }
+.contact-info-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
 
-        .contact-info-item div h4 {
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-            color: var(--dark);
-        }
+.contact-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    color: var(--white);
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
 
-        .contact-info-item div p, 
-        .contact-info-item div a {
-            color: #64748b;
-            font-size: 0.95rem;
-        }
+.contact-details {
+    flex: 1;
+}
 
-        .contact-info-item div a:hover {
-            color: var(--primary);
-        }
+.contact-details h4 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: var(--dark);
+    font-weight: 600;
+}
 
-        .contact-form {
+.contact-details p {
+    color: #64748b;
+    margin-bottom: 8px;
+}
+
+.contact-link {
+    display: inline-flex;
+    align-items: center;
+    color: var(--primary);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: var(--transition);
+    margin-top: 5px;
+}
+
+.contact-link:hover {
+    color: var(--secondary);
+    transform: translateX(5px);
+}
+
+.contact-link i {
+    margin-right: 8px;
+    font-size: 0.9rem;
+}
+
+/* Blinking availability dot */
+.availability-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+    color: var(--dark);
+}
+
+.blinking-dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #25D366;
+    animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+/* Responsive adjustments for contact section */
+@media (max-width: 768px) {
+    .contact-info {
+        padding: 30px 20px;
+    }
+    
+    .contact-info-item {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+    
+    .contact-icon {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    
+    .contact-link {
+        justify-content: center;
+    }
+}
+ 
+/*         .contact-form {
             background: var(--light);
             padding: 30px;
             border-radius: 15px;
@@ -857,7 +939,7 @@
             min-height: 150px;
             resize: vertical;
         }
-
+ */
         /* ===== Footer ===== */
         footer {
             background: var(--gradient-primary);
@@ -1519,71 +1601,62 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="section contact" id="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Contact Me</h2>
-                <p>Get in touch for collaborations or opportunities.</p>
-            </div>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3>Contact Information</h3>
-                    <div class="contact-info-item">
+ <!-- Contact Section -->
+<section class="section contact" id="contact">
+    <div class="container">
+        <div class="section-title">
+            <h2>Contact Me</h2>
+            <p>Get in touch for collaborations or opportunities.</p>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+                <div class="contact-info-item">
+                    <div class="contact-icon">
                         <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <h4>Location</h4>
-                            <p> Pakistan</p>
-                        </div>
                     </div>
-                    <div class="contact-info-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <h4>Email</h4>
-                            <p><a href="mailto:info.muazurrehman@gmail.com">info.muazurrehman@gmail.com</a></p>
-                        </div>
-                    </div>
-                    <div class="contact-info-item">
-                        <i class="fas fa-phone-alt"></i>
-                        <div>
-                            <h4>Phone(whatsapp)</h4>
-                            <p><a href="tel:+923396800322">+92 339 6800322</a></p>
-                        </div>
-                    </div>
-                    <div class="contact-info-item">
-                        <i class="fas fa-clock"></i>
-                        <div>
-                            <h4>Availability</h4>
-                            <p>Now</p>
-                        </div>
+                    <div class="contact-details">
+                        <h4>Location</h4>
+                        <p>Pakistan</p>
                     </div>
                 </div>
-<!--                 <div class="contact-form">
-                    <h3>Send Me a Message</h3>
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Your Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn">Send Message</button>
-                    </form>
+                <div class="contact-info-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Email</h4>
+                        <a href="mailto:info.muazurrehman@gmail.com" class="contact-link">
+                            <i class="fas fa-paper-plane"></i> Send Mail
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-info-item">
+                    <div class="contact-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>WhatsApp</h4>
+                        <a href="https://wa.me/923396800322" target="_blank" class="contact-link">
+                            <i class="fab fa-whatsapp"></i>Send Message 
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-info-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Availability</h4>
+                        <p class="availability-status">
+                            <span class="blinking-dot"></span> Now
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div> -->
-    </section>
-
+        </div>
+    </div>
+</section>
     <!-- Footer -->
     <footer>
         <div class="container">
