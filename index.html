@@ -764,7 +764,7 @@
             }
         }
 
-        /* ===== Contact Section ===== */
+/* ===== Contact Section ===== */
 .contact {
     background-color: var(--light);
 }
@@ -867,7 +867,8 @@
     margin-right: 8px;
     font-size: 0.9rem;
 }
-/* Blinking availability dot */
+
+/* Fixed Blinking availability dot */
 .availability-status {
     display: flex;
     align-items: center;
@@ -876,21 +877,21 @@
     color: var(--dark);
 }
 
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
 .blinking-dot {
     display: inline-block;
     width: 12px;
     height: 12px;
     border-radius: 50%;
     background-color: #25D366;
-    animation: blink 1.5s infinite;
+    animation: blink 2s infinite;
+    margin-right: 8px;
 }
-
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-}
-
-
 
 /* Responsive adjustments for contact section */
 @media (max-width: 768px) {
