@@ -3,23 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Muaz Ur Rehman | Full Stack Developer & DevOps Engineer</title>
-    <meta name="description" content="Portfolio of Muaz Ur Rehman - Computer Science Student at UVAS | Full Stack Developer | DevOps Engineer | Certified in React, Node.js, Python, AWS, Docker">
-    <meta name="keywords" content="Muaz Ur Rehman, Full Stack Developer, DevOps Engineer, Computer Science Student, UVAS, Web Developer, Pakistan">
-    <meta name="author" content="Muaz Ur Rehman">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph Tags -->
-    <meta property="og:title" content="Muaz Ur Rehman | Full Stack Developer & DevOps Engineer">
-    <meta property="og:description" content="Portfolio of Muaz Ur Rehman - Computer Science Student & Full Stack Developer">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://muazurrehman.is-a.dev">
-    <meta property="og:image" content="https://muazurrehman.is-a.dev/profile.jpg">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Muaz Ur Rehman | Full Stack Developer">
-    <meta name="twitter:description" content="Computer Science Student & Full Stack Developer portfolio">
+    
+    <!-- ===== SEO META TAGS ===== -->
+    <title>Muaz Ur Rehman | Full Stack Developer & DevOps Engineer</title>
+    <meta name="description" content="Portfolio of Muaz Ur Rehman - Computer Science Student at UVAS | Full Stack Developer | DevOps Engineer | Certified in React, Node.js, Python, AWS, Docker">
+    <meta name="keywords" content="Muaz Ur Rehman, Full Stack Developer, DevOps Engineer, Computer Science Student, UVAS, Web Developer, Pakistan">
+    <meta name="author" content="Muaz Ur Rehman">
+    <meta name="robots" content="index, follow">
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Muaz Ur Rehman | Full Stack Developer & DevOps Engineer">
+    <meta property="og:description" content="Portfolio of Muaz Ur Rehman - Computer Science Student & Full Stack Developer">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://muazurrehman.is-a.dev">
+    <meta property="og:image" content="https://muazurrehman.is-a.dev/profile.jpg">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Muaz Ur Rehman | Full Stack Developer">
+    <meta name="twitter:description" content="Computer Science Student & Full Stack Developer portfolio">
+    <!-- ===== END SEO TAGS ===== -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* ===== Global Styles ===== */
@@ -1744,24 +1746,24 @@
         heroSubtitle.textContent = '';
        
         // Add blink animation to style
-        const style = document.createElement('style');
-        style.innerHTML = `
-            @keyframes blink {
-                0%, 100% { opacity: 1; }
-                50% { opacity: 0; }
-            }
-            .typing-cursor {
-                display: inline-block;
-                margin-left: 2px;
-                font-weight: 400;
-                color: var(--accent);
-                animation: blink 0.7s infinite;
-            }
-            .bold-text {
-                font-weight: 700;
-            }
-        `;
-        document.head.appendChild(style);
+const style = document.createElement('style');
+style.innerHTML = `
+    @keyframes typing-blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+    .typing-cursor {
+        display: inline-block;
+        margin-left: 2px;
+        font-weight: 400;
+        color: var(--accent);
+        animation: typing-blink 0.7s infinite;
+    }
+    .bold-text {
+        font-weight: 700;
+    }
+`;
+document.head.appendChild(style);
        
         // Function to create blinking cursor
         function createCursor() {
