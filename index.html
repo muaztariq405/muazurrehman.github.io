@@ -24,7 +24,7 @@
     <!-- ===== END SEO TAGS ===== -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* ===== Global Styles ===== */
+         /* ===== Global Styles ===== */
         :root {
             --primary: #4361ee;       /* Vibrant Blue */
             --secondary: #f72585;     /* Energetic Pink */
@@ -38,6 +38,8 @@
             --gradient-primary: linear-gradient(135deg, var(--primary) 0%, #3a0ca3 100%);
             --gradient-secondary: linear-gradient(135deg, var(--secondary) 0%, #7209b7 100%);
             --gradient-accent: linear-gradient(135deg, var(--accent) 0%, #4895ef 100%);
+            --shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
 
         * {
@@ -51,6 +53,7 @@
             line-height: 1.6;
             color: var(--text);
             background-color: var(--light);
+            overflow-x: hidden;
         }
 
         a {
@@ -107,11 +110,20 @@
 
         .section {
             padding: 100px 0;
+            position: relative;
         }
 
         .section-title {
             text-align: center;
             margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .section-title.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .section-title h2 {
@@ -140,6 +152,57 @@
             margin: 0 auto;
         }
 
+        /* ===== Floating Shapes ===== */
+        .floating-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-duration: 20s;
+        }
+
+        .shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            left: 80%;
+            animation-duration: 25s;
+        }
+
+        .shape:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            top: 80%;
+            left: 20%;
+            animation-duration: 18s;
+        }
+
+        .shape:nth-child(4) {
+            width: 100px;
+            height: 100px;
+            top: 30%;
+            left: 70%;
+            animation-duration: 22s;
+        }
+
         /* ===== Header ===== */
         header {
             position: fixed;
@@ -157,7 +220,6 @@
         header.scrolled {
             padding: 15px 0;
             background: rgba(255, 255, 255, 0.98);
-            
         }
 
         .header-container {
@@ -178,6 +240,11 @@
             margin-right: 10px;
             object-fit: cover;
             border: 2px solid var(--primary);
+            transition: var(--transition);
+        }
+
+        .logo:hover img {
+            transform: rotate(720deg);
         }
 
         .logo h1 {
@@ -185,7 +252,7 @@
             font-weight: 700;
             color: var(--dark);
             background: var(--gradient-primary);
-              background-clip: text;
+            background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
             -webkit-text-fill-color: transparent;
@@ -227,6 +294,11 @@
             color: var(--dark);
             font-size: 1.5rem;
             cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .mobile-menu-btn:hover {
+            color: var(--primary);
         }
 
         /* ===== Hero Section ===== */
@@ -263,12 +335,28 @@
             font-size: 3.5rem;
             margin-bottom: 20px;
             line-height: 1.2;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .hero-content h1.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .hero-content p {
             font-size: 1.2rem;
             margin-bottom: 30px;
             opacity: 0.9;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease 0.2s;
+        }
+
+        .hero-content p.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .hero-btns {
@@ -276,6 +364,14 @@
             justify-content: center;
             gap: 20px;
             flex-wrap: wrap;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease 0.4s;
+        }
+
+        .hero-btns.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .hero-btns .btn-outline {
@@ -303,6 +399,14 @@
             flex: 1;
             text-align: center;
             position: relative;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+
+        .about-img.animate {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .about-img::before {
@@ -324,10 +428,23 @@
             object-fit: cover;
             box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
             border: 5px solid var(--accent);
+            transition: var(--transition);
+        }
+
+        .about-img:hover img {
+            transform: scale(1.03);
         }
 
         .about-content {
             flex: 1;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease 0.2s;
+        }
+
+        .about-content.animate {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .about-content h2 {
@@ -335,7 +452,7 @@
             color: var(--dark);
             margin-bottom: 20px;
             background: var(--gradient-primary);
-             background-clip: text;
+            background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
             -webkit-text-fill-color: transparent;
@@ -353,6 +470,14 @@
         .about-info-item {
             display: flex;
             margin-bottom: 15px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .about-info-item.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .about-info-item i {
@@ -373,7 +498,7 @@
         }
 
         /* ===== Skills Section ===== */
-         .skills {
+        .skills {
             background-color: var(--light);
         }
 
@@ -393,6 +518,14 @@
             border-top: 4px solid var(--primary);
             position: relative;
             overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .skill-card.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .skill-card::before {
@@ -436,6 +569,11 @@
             font-size: 2rem;
             z-index: 1;
             position: relative;
+            transition: var(--transition);
+        }
+
+        .skill-card:hover .skill-icon {
+            transform: scale(1.1) rotate(5deg);
         }
 
         .skill-card h3 {
@@ -453,7 +591,7 @@
         }
 
         /* ===== Certificates Section ===== */
-       .certificates {
+        .certificates {
             padding: 100px 0;
             background-color: var(--light);
         }
@@ -472,6 +610,14 @@
             transition: var(--transition);
             border: 1px solid #e2e8f0;
             position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .certificate-card.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .certificate-card:hover {
@@ -616,6 +762,18 @@
             display: flex;
             margin-bottom: 50px;
             position: relative;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+
+        .education-item:nth-child(even) {
+            transform: translateX(50px);
+        }
+
+        .education-item.animate {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .education-item:nth-child(odd) {
@@ -699,7 +857,7 @@
         }
 
         /* ===== Projects Section ===== */
-       .projects {
+        .projects {
             padding: 100px 0;
             background-color: var(--light);
         }
@@ -718,6 +876,14 @@
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             border-top: 4px solid var(--accent);
             position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .project-card.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .project-card:hover {
@@ -789,6 +955,10 @@
             font-weight: 600;
             color: var(--primary);
         }
+        .project-card:hover .project-tech span {
+            background: var(--primary);
+            color: white;
+        }
 
         .project-actions {
             display: flex;
@@ -830,156 +1000,178 @@
             }
         }
 
-/* ===== Contact Section ===== */
-.contact {
-    background-color: var(--light);
-}
+        /* ===== Contact Section ===== */
+        .contact {
+            background-color: var(--light);
+        }
 
-.contact-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-}
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
 
-.contact-info {
-    background: var(--white);
-    padding: 40px 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    border-left: 4px solid var(--accent);
-}
+        .contact-info {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid var(--accent);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
 
-.contact-info h3 {
-    font-size: 1.5rem;
-    color: var(--dark);
-    margin-bottom: 30px;
-    position: relative;
-    padding-bottom: 15px;
-    text-align: center;
-}
+        .contact-info.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-.contact-info h3::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background: var(--accent);
-    border-radius: 2px;
-}
+        .contact-info h3 {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+            text-align: center;
+        }
 
-.contact-info-item {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 25px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-}
+        .contact-info h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
 
-.contact-info-item:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
 
-.contact-icon {
-    width: 50px;
-    height: 50px;
-    background: var(--gradient-primary);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 15px;
-    color: var(--white);
-    font-size: 1.2rem;
-    flex-shrink: 0;
-}
+        .contact-info-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-.contact-details {
-    flex: 1;
-}
+        .contact-info-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
 
-.contact-details h4 {
-    font-size: 1.1rem;
-    margin-bottom: 5px;
-    color: var(--dark);
-    font-weight: 600;
-}
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--white);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
 
-.contact-details p {
-    color: #64748b;
-    margin-bottom: 8px;
-}
+        .contact-info-item:hover .contact-icon {
+            transform: scale(1.1);
+             background: var(--gradient-secondary);
+        }
 
-.contact-link {
-    display: inline-flex;
-    align-items: center;
-    color: var(--primary);
-    font-weight: 500;
-    font-size: 0.95rem;
-    transition: var(--transition);
-    margin-top: 5px;
-}
+        .contact-details {
+            flex: 1;
+        }
 
-.contact-link:hover {
-    color: var(--secondary);
-    transform: translateX(5px);
-}
+        .contact-details h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--dark);
+            font-weight: 600;
+        }
 
-.contact-link i {
-    margin-right: 8px;
-    font-size: 0.9rem;
-}
+        .contact-details p {
+            color: #64748b;
+            margin-bottom: 8px;
+        }
 
-/* Fixed Blinking availability dot */
-.availability-status {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-weight: 500;
-    color: var(--dark);
-}
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            margin-top: 5px;
+        }
 
-@keyframes blink {
-    0% { opacity: 1; }
-    50% { opacity: 0; }    /* Fixed: Now completely disappears */
-    100% { opacity: 1; }
-}
+        .contact-link:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
 
-.blinking-dot {
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: #25D366;
-    animation: blink 2s infinite;
-    margin-right: 8px;
-}
+        .contact-link i {
+            margin-right: 8px;
+            font-size: 0.9rem;
+        }
 
-/* Responsive adjustments for contact section */
-@media (max-width: 768px) {
-    .contact-info {
-        padding: 30px 20px;
-    }
-    
-    .contact-info-item {
-        flex-direction: column;
-        text-align: center;
-        align-items: center;
-    }
-    
-    .contact-icon {
-        margin-right: 0;
-        margin-bottom: 15px;
-    }
-    
-    .contact-link {
-        justify-content: center;
-    }
-}
+        /* Fixed Blinking availability dot */
+        .availability-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }    /* Fixed: Now completely disappears */
+            100% { opacity: 1; }
+        }
+
+        .blinking-dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #25D366;
+            animation: blink 2s infinite;
+            margin-right: 8px;
+        }
+
+        /* Responsive adjustments for contact section */
+        @media (max-width: 768px) {
+            .contact-info {
+                padding: 30px 20px;
+            }
+            
+            .contact-info-item {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+            
+            .contact-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .contact-link {
+                justify-content: center;
+            }
+        }
  
 
         /* ===== Footer ===== */
@@ -1126,122 +1318,207 @@
             transform: translateY(-5px);
         }
 
-        /* ===== Responsive Styles ===== */
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 100px; /* Changed from 25px to 100px to position above back-to-top button */
+            right: 25px;
+            background: #25D366;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            z-index: 998; /* Lower z-index than back-to-top button */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            background: #128C7E;
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
+        }
+
+        .whatsapp-float i {
+            margin: 0;
+        }
+
+        /* ===== Animation Keyframes ===== */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+            100% {
+                transform: translateY(0) rotate(360deg);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* ===== Responsive Design ===== */
         @media (max-width: 992px) {
             .about-container {
                 flex-direction: column;
             }
-
+            
             .about-img {
-                margin-bottom: 30px;
+                margin-bottom: 40px;
             }
-
-            .section-title h2 {
-                font-size: 2rem;
+            
+            .education-container::before {
+                left: 30px;
             }
-
-            .hero-content h1 {
-                font-size: 2.8rem;
+            
+            .education-item {
+                justify-content: flex-start !important;
+                padding-left: 80px !important;
+                padding-right: 0 !important;
+                text-align: left !important;
+            }
+            
+            .education-content {
+                width: 100%;
+            }
+            
+            .education-item:nth-child(odd) .education-content::before {
+                display: none;
+            }
+            
+            .education-item:nth-child(even) .education-content::before {
+                display: none;
+            }
+            
+            .education-icon {
+                left: 30px;
             }
         }
 
         @media (max-width: 768px) {
-            nav {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 280px;
-                height: 100vh;
-                background: var(--white);
-                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
-                transition: var(--transition);
-                z-index: 1001;
-                padding-top: 80px;
+            .hero-content h1 {
+                font-size: 2.5rem;
             }
-
-            nav.active {
-                right: 0;
+            
+            .section-title h2 {
+                font-size: 2rem;
             }
-
+            
             nav ul {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: var(--white);
                 flex-direction: column;
-                padding: 0 30px;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 50px;
+                transition: var(--transition);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
             }
-
+            
+            nav ul.active {
+                left: 0;
+            }
+            
             nav ul li {
                 margin: 15px 0;
             }
-
+            
             .mobile-menu-btn {
                 display: block;
-                z-index: 1002;
             }
-
-            .hero-content h1 {
-                font-size: 2.3rem;
-            }
-
+            
             .hero-btns {
                 flex-direction: column;
-                gap: 15px;
+                align-items: center;
             }
-
-            .education-container::before {
-                left: 30px;
+            
+            .hero-btns .btn {
+                width: 80%;
+                text-align: center;
             }
-
-            .education-item {
-                justify-content: flex-start !important;
-                padding-right: 0 !important;
-                padding-left: 80px !important;
-                text-align: left !important;
-            }
-
-            .education-content {
-                width: 100%;
-            }
-
-            .education-item:nth-child(odd) .education-content::before,
-            .education-item:nth-child(even) .education-content::before {
-                display: none;
-            }
-
-            .education-icon {
-                left: 30px;
-                transform: translate(0, -50%);
-            }
-        }
-
-        @media (max-width: 576px) {
-            .logo h1 {
-                font-size: 1.2rem;
-            }
-
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-
-            .hero-content p {
-                font-size: 1rem;
-            }
-
-            .section-title h2 {
-                font-size: 1.8rem;
-            }
-
+            
             .about-img img {
                 width: 280px;
                 height: 280px;
             }
-
+            
             .footer-container {
                 grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .section {
+                padding: 70px 0;
+            }
+            
+            .about-img img {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .skill-card, .certificate-card, .project-card {
+                padding: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+  <!-- ===== Header ===== -->
     <header id="header">
         <div class="container header-container">
             <div class="logo">
@@ -1267,6 +1544,12 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
         <div class="container">
             <div class="hero-content">
                 <h1>MUAZ UR REHMAN</h1>
@@ -1307,6 +1590,7 @@
                             <div>
                                 <h4>Email:</h4>
                                 <p><a href="mailto:info.muazurrehman@gmail.com">info.muazurrehman@gmail.com</a></p>
+                                
                             </div>
                         </div>
                         <div class="about-info-item">
@@ -1384,6 +1668,7 @@
     </section>
 
     <!-- Certificates Section -->
+    <!-- Certificates Section -->
     <section class="section certificates" id="certificates">
         <div class="container">
             <div class="section-title">
@@ -1433,7 +1718,7 @@
                         </div>
                     </div>
                 </div> 
-                 <!-- Certificate 3  - UX?UI -->
+                 <!-- Certificate 3  - UX/UI -->
                 <div class="certificate-card">
                     <div class="certificate-img">
                         <img src="UX design.jpg" alt="IBM Certificate">
@@ -1453,7 +1738,7 @@
                         </div>
                     </div>
                 </div>
-                 <!-- Certificate 4 - web mastery -->
+                 <!-- Certificate 4 - Web Mastery -->
                 <div class="certificate-card">
                     <div class="certificate-img">
                         <img src="web mastery.jpg" alt="web mastery">
@@ -1487,7 +1772,7 @@
                         </div>
                         <span class="certificate-date">Issued: April 2023</span>
                         <div class="certificate-verify">
-                    <a href="https://www.coursera.org/account/accomplishments/verify/C37F5MFB58JL" class="verify-btn" target="_blank">
+                            <a href="https://www.coursera.org/account/accomplishments/verify/C37F5MFB58JL" class="verify-btn" target="_blank">
                                 <i class="fas fa-shield-alt"></i> Verify
                             </a>
                             <span class="certificate-id">ID: DEF789</span>
@@ -1507,7 +1792,7 @@
                         </div>
                         <span class="certificate-date">Issued: April 2023</span>
                         <div class="certificate-verify">
-                    <a href="https://www.life-global.org/certificate/4e5e0899-cf57-4a4d-9cc4-62aaafac7324" class="verify-btn" target="_blank">
+                            <a href="https://www.life-global.org/certificate/4e5e0899-cf57-4a4d-9cc4-62aaafac7324" class="verify-btn" target="_blank">
                                 <i class="fas fa-shield-alt"></i> Verify
                             </a>
                             <span class="certificate-id">ID: 4e5e0899</span>
@@ -1642,8 +1927,7 @@
             </div>
         </div>
     </section>
-
- <!-- Contact Section -->
+<!-- Contact Section -->
 <section class="section contact" id="contact">
     <div class="container">
         <div class="section-title">
@@ -1680,7 +1964,7 @@
                     <div class="contact-details">
                         <h4>WhatsApp</h4>
                         <a href="https://wa.me/923396800322" target="_blank" class="contact-link">
-                            <i class="fab fa-whatsapp"></i>Send Message 
+                            <i class="fab fa-whatsapp"></i>Message 
                         </a>
                     </div>
                 </div>
@@ -1691,14 +1975,15 @@
                     <div class="contact-details">
                         <h4>Availability</h4>
                         <p class="availability-status">
-                            <span class="blinking-dot"></span> Now
+                            <span class="blinking-dot"></span>Now
                         </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
+    </section>
+    
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -1750,174 +2035,52 @@
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <div class="back-to-top" id="backToTop">
-        <i class="fas fa-arrow-up"></i>
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/923396800322" target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- ===== Back to Top Button ===== -->
+    <div class="back-to-top" id="back-to-top">
+        <i class="fas fa-chevron-up"></i>
     </div>
 
     <script>
-         // Enhanced Typewriter animation with backspace effect
-    document.addEventListener('DOMContentLoaded', function() {
-        const heroTitle = document.querySelector('.hero-content h1');
-        const heroSubtitle = document.querySelector('.hero-content p');
-        const originalTitle = heroTitle.textContent;
-        const originalSubtitle = heroSubtitle.textContent;
-       
-        // Clear the initial content
-        heroTitle.textContent = '';
-        heroSubtitle.textContent = '';
-       
-        // Add blink animation to style
-const style = document.createElement('style');
-style.innerHTML = `
-    @keyframes typing-blink {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0; }
-    }
-    .typing-cursor {
-        display: inline-block;
-        margin-left: 2px;
-        font-weight: 400;
-        color: var(--accent);
-        animation: typing-blink 0.7s infinite;
-    }
-    .bold-text {
-        font-weight: 700;
-    }
-`;
-document.head.appendChild(style);
-       
-        // Function to create blinking cursor
-        function createCursor() {
-            const cursor = document.createElement('span');
-            cursor.className = 'typing-cursor';
-            cursor.innerHTML = '|';
-            return cursor;
-        }
-       
-        // Function to type text with cursor
-        function typeText(element, text, speed, onComplete) {
-            let i = 0;
-            const cursor = createCursor();
-            element.appendChild(cursor);
-           
-            function type() {
-                if (i < text.length) {
-                    // Move cursor before adding text
-                    cursor.remove();
-                    element.innerHTML += text.charAt(i);
-                    element.appendChild(cursor);
-                    i++;
-                    setTimeout(type, speed/4); //for increasing speed to show text
-                } else if (onComplete) {
-                    cursor.remove();
-                    onComplete();
-                }
-            }
-           
-            type();
-        }
-       
-        // Function to backspace text with cursor
-        function backspaceText(element, speed, onComplete) {
-            let text = element.textContent;
-            let i = text.length;
-            const cursor = createCursor();
-           
-            function backspace() {
-                if (i > 0) {
-                    // Move cursor before removing text
-                    element.textContent = text.substring(0, i - 1);
-                    element.appendChild(cursor);
-                    i--;
-                    setTimeout(backspace, speed / 3); // Faster backspacing
-                } else if (onComplete) {
-                    cursor.remove();
-                    onComplete();
-                }
-            }
-           
-            // Start with cursor at the end
-            element.appendChild(cursor);
-            setTimeout(backspace, 300);
-        }
-       
-        // Start the animation sequence
-        setTimeout(function() {
-            // Type the name first
-            typeText(heroTitle, originalTitle, 80, function() {
-                // Keep name displayed, start subtitle animation
-                setTimeout(function() {
-                    const subtitleParts = originalSubtitle.split(' | ');
-                    let currentIndex = 0;
-                   
-                    function animateSubtitles() {
-                        if (currentIndex < subtitleParts.length) {
-                            // Type the current part
-                            typeText(heroSubtitle, subtitleParts[currentIndex], 60, function() {
-                                // Hold text for a moment
-                                setTimeout(function() {
-                                    // Backspace the current part
-                                    backspaceText(heroSubtitle, 40, function() {
-                                        currentIndex++;
-                                        // Continue to next part or restart
-                                        if (currentIndex < subtitleParts.length) {
-                                            setTimeout(animateSubtitles, 300);
-                                        } else {
-                                            // Restart the subtitle animation
-                                            currentIndex = 0;
-                                            setTimeout(animateSubtitles, 500);
-                                        }
-                                    });
-                                }, 1500); // Time to hold the text
-                            });
-                        }
-                    }
-                   
-                    // Start the continuous subtitle animation
-                    animateSubtitles();
-                }, 1000);
-            });
-        }, 500);
-    });
-        // Mobile Menu Toggle
+        // ===== DOM Elements =====
+        const header = document.getElementById('header');
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const nav = document.getElementById('nav');
+        const backToTop = document.getElementById('back-to-top');
 
+        // ===== Mobile Menu Toggle =====
         mobileMenuBtn.addEventListener('click', () => {
-            mobileMenuBtn.classList.toggle('active');
             nav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = nav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
         });
 
-        // Close mobile menu when clicking on a nav link
-        const navLinks = document.querySelectorAll('nav ul li a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenuBtn.classList.remove('active');
-                nav.classList.remove('active');
-            });
-        });
-
-        // Header scroll effect
-        const header = document.getElementById('header');
+        // ===== Header Scroll Effect =====
         window.addEventListener('scroll', () => {
+            // Header background on scroll
             if (window.scrollY > 100) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
             }
-        });
 
-        // Back to top button
-        const backToTop = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
+            // Back to top button visibility
+            if (window.scrollY > 500) {
                 backToTop.classList.add('active');
             } else {
                 backToTop.classList.remove('active');
             }
+
+            // Trigger animations on scroll
+            triggerAnimations();
         });
 
+        // ===== Back to Top Functionality =====
         backToTop.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
@@ -1925,13 +2088,206 @@ document.head.appendChild(style);
             });
         });
 
-        // Form submission
-        const contactForm = document.getElementById('contactForm');
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thank you for your message! I will get back to you soon.');
-            contactForm.reset();
+        // ===== Smooth Scrolling for Navigation Links =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Close mobile menu if open
+                    nav.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    
+                    // Scroll to target
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // ===== Animation Trigger on Scroll =====
+        function triggerAnimations() {
+            const elementsToAnimate = document.querySelectorAll('.section-title, .about-img, .about-content, .skill-card, .certificate-card, .education-item, .project-card, .contact-info, .about-info-item, .contact-info-item');
+            
+            elementsToAnimate.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('animate');
+                }
+            });
+            
+            // Hero section animations
+            const heroTitle = document.querySelector('.hero-content h1');
+            const heroSubtitle = document.querySelector('.hero-content p');
+            const heroButtons = document.querySelector('.hero-btns');
+            
+            if (heroTitle && !heroTitle.classList.contains('animate')) {
+                heroTitle.classList.add('animate');
+                setTimeout(() => {
+                    if (heroSubtitle) heroSubtitle.classList.add('animate');
+                }, 300);
+                setTimeout(() => {
+                    if (heroButtons) heroButtons.classList.add('animate');
+                }, 600);
+            }
+        }
+
+        // ===== Initialize Animations on Load =====
+        window.addEventListener('load', () => {
+            triggerAnimations();
+            
+            // Add floating animation delay to skill cards
+            const skillCards = document.querySelectorAll('.skill-card');
+            skillCards.forEach((card, index) => {
+                card.style.transitionDelay = `${index * 0.1}s`;
+            });
+            
+            // Add staggered animation to about info items
+            const aboutInfoItems = document.querySelectorAll('.about-info-item');
+            aboutInfoItems.forEach((item, index) => {
+                item.style.transitionDelay = `${index * 0.2}s`;
+            });
+            
+            // Add staggered animation to contact info items
+            const contactInfoItems = document.querySelectorAll('.contact-info-item');
+            contactInfoItems.forEach((item, index) => {
+                item.style.transitionDelay = `${index * 0.2}s`;
+            });
+        });
+
+        // ===== Enhanced Typewriter Effect for Hero Title =====
+        document.addEventListener('DOMContentLoaded', function() {
+            const heroTitle = document.querySelector('.hero-content h1');
+            const heroSubtitle = document.querySelector('.hero-content p');
+            const originalTitle = heroTitle.textContent;
+            const originalSubtitle = heroSubtitle.textContent;
+           
+            // Clear the initial content
+            heroTitle.textContent = '';
+            heroSubtitle.textContent = '';
+           
+            // Add blink animation to style
+            const style = document.createElement('style');
+            style.innerHTML = `
+                @keyframes blink {
+                    0%, 100% { opacity: 1; }
+                    50% { opacity: 0; }
+                }
+                .typing-cursor {
+                    display: inline-block;
+                    margin-left: 2px;
+                    font-weight: 400;
+                    color: var(--accent);
+                    animation: blink 0.7s infinite;
+                }
+                .bold-text {
+                    font-weight: 700;
+                }
+            `;
+            document.head.appendChild(style);
+           
+            // Function to create blinking cursor
+            function createCursor() {
+                const cursor = document.createElement('span');
+                cursor.className = 'typing-cursor';
+                cursor.innerHTML = '|';
+                return cursor;
+            }
+           
+            // Function to type text with cursor
+            function typeText(element, text, speed, onComplete) {
+                let i = 0;
+                const cursor = createCursor();
+                element.appendChild(cursor);
+               
+                function type() {
+                    if (i < text.length) {
+                        // Move cursor before adding text
+                        cursor.remove();
+                        element.innerHTML += text.charAt(i);
+                        element.appendChild(cursor);
+                        i++;
+                        setTimeout(type, speed/4);//for increasing speed to show text
+                    } else if (onComplete) {
+                        cursor.remove();
+                        onComplete();
+                    }
+                }
+               
+                type();
+            }
+           
+            // Function to backspace text with cursor
+            function backspaceText(element, speed, onComplete) {
+                let text = element.textContent;
+                let i = text.length;
+                const cursor = createCursor();
+               
+                function backspace() {
+                    if (i > 0) {
+                        // Move cursor before removing text
+                        element.textContent = text.substring(0, i - 1);
+                        element.appendChild(cursor);
+                        i--;
+                        setTimeout(backspace, speed / 2); // Faster backspacing
+                    } else if (onComplete) {
+                        cursor.remove();
+                        onComplete();
+                    }
+                }
+               
+                // Start with cursor at the end
+                element.appendChild(cursor);
+                setTimeout(backspace, 300);
+            }
+           
+            // Start the animation sequence
+            setTimeout(function() {
+                // Type the name first
+                typeText(heroTitle, originalTitle, 80, function() {
+                    // Keep name displayed, start subtitle animation
+                    setTimeout(function() {
+                        const subtitleParts = originalSubtitle.split(' | ');
+                        let currentIndex = 0;
+                       
+                        function animateSubtitles() {
+                            if (currentIndex < subtitleParts.length) {
+                                // Type the current part
+                                typeText(heroSubtitle, subtitleParts[currentIndex], 60, function() {
+                                    // Hold text for a moment
+                                    setTimeout(function() {
+                                        // Backspace the current part
+                                        backspaceText(heroSubtitle, 40, function() {
+                                            currentIndex++;
+                                            // Continue to next part or restart
+                                            if (currentIndex < subtitleParts.length) {
+                                                setTimeout(animateSubtitles, 300);
+                                            } else {
+                                                // Restart the subtitle animation
+                                                currentIndex = 0;
+                                                setTimeout(animateSubtitles, 500);
+                                            }
+                                        });
+                                    }, 1500); // Time to hold the text
+                                });
+                            }
+                        }
+                       
+                        // Start the continuous subtitle animation
+                        animateSubtitles();
+                    }, 1000);
+                });
+            }, 500);
         });
     </script>
 </body>
 </html>
+
