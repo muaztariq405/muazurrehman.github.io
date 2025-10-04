@@ -2052,13 +2052,14 @@
         const nav = document.getElementById('nav');
         const backToTop = document.getElementById('back-to-top');
 
-        // ===== Mobile Menu Toggle =====
-        mobileMenuBtn.addEventListener('click', () => {
-            nav.classList.toggle('active');
-            mobileMenuBtn.innerHTML = nav.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-        });
+      // ===== Mobile Menu Toggle =====
+mobileMenuBtn.addEventListener('click', () => {
+    const navUl = document.querySelector('#nav ul');
+    navUl.classList.toggle('active');
+    mobileMenuBtn.innerHTML = navUl.classList.contains('active') 
+        ? '<i class="fas fa-times"></i>' 
+        : '<i class="fas fa-bars"></i>';
+});
 
         // ===== Header Scroll Effect =====
         window.addEventListener('scroll', () => {
@@ -2098,10 +2099,10 @@
                 
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
-                    // Close mobile menu if open
-                    nav.classList.remove('active');
-                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                    
+                  // Close mobile menu if open
+        const navUl = document.querySelector('#nav ul');
+            navUl.classList.remove('active');
+             mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
                     // Scroll to target
                     window.scrollTo({
                         top: targetElement.offsetTop - 80,
