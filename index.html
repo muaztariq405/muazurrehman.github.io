@@ -1598,44 +1598,43 @@ html, body {
         }
 
         @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-            
-            .section-title h2 {
-                font-size: 2rem;
-            }
-            
-            nav ul {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 10px);
-                background: var(--white);
-                flex-direction: column;
-                align-items: center;
-                justify-content: flex-start;
-                padding-top: 50px;
-                transition: var(--transition);
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            }
-            
-            .dark-mode nav ul {
-                background: var(--white);
-            }
-            
-            nav ul.active {
-                left: 0;
-            }
-            
-            nav ul li {
-                margin: 15px 0;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
+    nav ul {
+        position: fixed;
+        top: 70px;
+        right: -100%; /* Changed from left: -100% */
+        width: 80%; /* Reduced width for right-side appearance */
+        height: calc(100vh - 70px);
+        background: var(--white);
+        flex-direction: column;
+        align-items: flex-start; /* Align items to start */
+        justify-content: flex-start;
+        padding: 50px 30px; /* Added right padding */
+        transition: var(--transition);
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1); /* Shadow on left side */
+    }
+    
+    .dark-mode nav ul {
+        background: var(--white);
+    }
+    
+    nav ul.active {
+        right: 0; /* Changed from left: 0 */
+    }
+    
+    nav ul li {
+        margin: 15px 0;
+        width: 100%;
+    }
+    
+    nav ul li a {
+        display: block;
+        padding: 10px 0;
+        width: 100%;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+    }
             
             .hero-btns {
                 flex-direction: column;
@@ -2279,6 +2278,15 @@ mobileMenuBtn.addEventListener('click', () => {
     mobileMenuBtn.innerHTML = navUl.classList.contains('active') 
         ? '<i class="fas fa-times"></i>' 
         : '<i class="fas fa-bars"></i>';
+});
+
+// Close mobile menu when clicking on nav links
+document.querySelectorAll('#nav ul li a').forEach(link => {
+    link.addEventListener('click', () => {
+        const navUl = document.querySelector('#nav ul');
+        navUl.classList.remove('active');
+        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+    });
 });
 
         // ===== Header Scroll Effect =====
