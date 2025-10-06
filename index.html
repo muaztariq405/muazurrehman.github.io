@@ -1307,7 +1307,7 @@ html, body {
             height: 12px;
             border-radius: 50%;
             background-color: #25D366;
-            animation: blink 2s infinite;
+            animation: blink 1.5s infinite;
             margin-right: 8px;
         }
 
@@ -1597,45 +1597,47 @@ html, body {
             }
         }
 
-        @media (max-width: 768px) {
-    nav ul {
-        position: fixed;
-        top: 70px;
-        right: -100%; /* Changed from left: -100% */
-        width: 80%; /* Reduced width for right-side appearance */
-        height: calc(100vh - 70px);
-        background: var(--white);
-        flex-direction: column;
-        align-items: flex-start; /* Align items to start */
-        justify-content: flex-start;
-        padding: 50px 30px; /* Added right padding */
-        transition: var(--transition);
-        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1); /* Shadow on left side */
-    }
+     @media (max-width: 768px) {
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: var(--white);
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+                transition: var(--transition);
+                z-index: 1001;
+                padding-top: 80px;
+            }
+
+            nav.active {
+                right: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 0 30px;
+            }
+
+            nav ul li {
+                margin: 15px 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                z-index: 1002;
+            }
+
+            .hero-content h1 {
+                font-size: 2.3rem;
+            }
     
     .dark-mode nav ul {
         background: var(--white);
     }
     
-    nav ul.active {
-        right: 0; /* Changed from left: 0 */
-    }
     
-    nav ul li {
-        margin: 15px 0;
-        width: 100%;
-    }
-    
-    nav ul li a {
-        display: block;
-        padding: 10px 0;
-        width: 100%;
-    }
-    
-    .mobile-menu-btn {
-        display: block;
-    }
-            
             .hero-btns {
                 flex-direction: column;
                 align-items: center;
@@ -2271,23 +2273,20 @@ html, body {
         // Add event listener to theme toggle
         themeToggle.addEventListener('click', toggleTheme);
 
-      // ===== Mobile Menu Toggle =====
-mobileMenuBtn.addEventListener('click', () => {
-    const navUl = document.querySelector('#nav ul');
-    navUl.classList.toggle('active');
-    mobileMenuBtn.innerHTML = navUl.classList.contains('active') 
-        ? '<i class="fas fa-times"></i>' 
-        : '<i class="fas fa-bars"></i>';
-});
+        // Mobile Menu Toggle
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            nav.classList.toggle('active');
+        });
 
-// Close mobile menu when clicking on nav links
-document.querySelectorAll('#nav ul li a').forEach(link => {
-    link.addEventListener('click', () => {
-        const navUl = document.querySelector('#nav ul');
-        navUl.classList.remove('active');
-        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-    });
-});
+        // Close mobile menu when clicking on a nav link
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuBtn.classList.remove('active');
+                nav.classList.remove('active');
+            });
+        });
 
         // ===== Header Scroll Effect =====
         window.addEventListener('scroll', () => {
