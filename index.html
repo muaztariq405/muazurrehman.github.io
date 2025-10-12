@@ -684,6 +684,7 @@ html, body {
             transform: translateY(-10px);
             box-shadow: var(--shadow-hover);
             color: var(--white);
+          
         }
 
         .skill-card:hover * {
@@ -2242,7 +2243,7 @@ html, body {
 
     <!-- ===== Back to Top Button ===== -->
     <div class="back-to-top" id="back-to-top">
-        <i class="fas fa-chevron-up"></i>
+        <i class="fas fa-arrow-up"></i>
     </div>
 
     <script>
@@ -2514,6 +2515,38 @@ html, body {
                     }, 1000);
                 });
             }, 500);
+        });
+         // ===== Advanced Parallax Effect =====
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.floating-shapes .shape');
+            
+            parallaxElements.forEach((element, index) => {
+                const speed = 0.5 + (index * 0.1);
+                const yPos = -(scrolled * speed);
+                element.style.transform = `translateY(${yPos}px) rotate(${scrolled * 0.05}deg)`;
+            });
+        });
+
+        // ===== Advanced Hover Effects =====
+        document.querySelectorAll('.skill-card, .certificate-card, .project-card').forEach(card => {
+            card.addEventListener('mousemove', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const angleX = (y - centerY) / 10;
+                const angleY = (centerX - x) / 10;
+                
+                this.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) translateY(-10px)`;
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+            });
         });
     </script>
 </body>
