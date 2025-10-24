@@ -3229,11 +3229,11 @@
                                             currentIndex++;
                                             // Continue to next part or restart
                                             if (currentIndex < subtitleParts.length) {
-                                                setTimeout(animateSubtitles, 300);
+                                                setTimeout(animateSubtitles, 0);
                                             } else {
                                                 // Restart the subtitle animation
                                                 currentIndex = 0;
-                                                setTimeout(animateSubtitles, 500);
+                                                setTimeout(animateSubtitles, 0);
                                             }
                                         });
                                     }, 1500); // Time to hold the text
