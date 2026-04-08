@@ -1,0 +1,4 @@
+Copyright (c) 2025 MUAZ UR REHMAN. All rights reserved.
+
+This software and its source code may not be copied, distributed, modified, or used
+in any form without explicit written permission from the author.
