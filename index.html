@@ -419,23 +419,23 @@
         }
 
         .mobile-nav {
-       position: fixed;
-    top: 0;
-    right: 0;
-    width: 300px;
-    height: 100vh;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
-    transform: translateX(100%);
-    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-    z-index: 999;
-    padding: 100px 30px 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    will-change: transform;
+         position: fixed;
+         top: 0;
+         right: 0;
+         width: 300px;
+         height: 100vh;
+         background: rgba(255, 255, 255, 0.95);
+         backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+         box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+         transform: translateX(100%);
+         transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+         z-index: 999;
+         padding: 100px 30px 30px;
+         display: flex;
+         flex-direction: column;
+         gap: 10px;
+         will-change: transform;
         }
         .mobile-nav.active {
           transform: translateX(0);
@@ -467,6 +467,7 @@
             opacity: 0;
             visibility: hidden;
             transition: var(--transition);
+            will-change: opacity;
         }
 
         .mobile-nav-overlay.active {
@@ -2998,25 +2999,34 @@
         const navLinks = document.querySelectorAll('.nav-link');
 
         // ===== HEADER SCROLL EFFECT =====
-        window.addEventListener('scroll', () => {
-            // Header background on scroll
+  
+           let ticking = false;
+
+         window.addEventListener('scroll', () => {
+           if (!ticking) {
+        window.requestAnimationFrame(() => {
+            // Header background
             if (window.scrollY > 50) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
             }
 
-            // Back to top button visibility
+            // Back to top
             if (window.scrollY > 500) {
                 backToTop.classList.add('active');
             } else {
                 backToTop.classList.remove('active');
             }
 
-            // Trigger animations on scroll
+            // Trigger animations (will be throttled internally)
             triggerAnimations();
-        });
 
+            ticking = false;
+        });
+        ticking = true;
+    }
+});
         // ===== MOBILE MENU TOGGLE =====
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenuBtn.classList.toggle('active');
